@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
-export default function Home() {
+const  Home = () => {
   return (
     <>
-      <Button className="bg-amber-700">Click me</Button>
+      <Button className="bg-amber-700 font-bebas-neue uppercase">Click me please!!</Button>
     </>
   );
 }
+
+export default Home;
