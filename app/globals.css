@@ -35,6 +35,9 @@
   }
 }
 
+.change-hover {
+  @apply bg-amber-700 font-bebas-neue uppercase
+}
 
 @layer base {
   :root{

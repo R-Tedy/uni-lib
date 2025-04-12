@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 const  Home = () => {
   return (
     <>
-      <Button className="bg-amber-700 font-bebas-neue uppercase">Click me please!!</Button>
+      <Button className=" change-hover">Click me please!!</Button>
     </>
   );
 }
