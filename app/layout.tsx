@@ -16,16 +16,6 @@ const ibmPlexSans = IBM_Plex_Sans(
   }
 );
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
 export const metadata: Metadata = {
   title: "UniLib",
   description: "Borrow and read books at your convenience",
