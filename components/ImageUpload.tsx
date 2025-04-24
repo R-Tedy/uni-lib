@@ -44,20 +44,20 @@ const ImageUpload = (
 ) => {
   const [progress, setProgress] = useState(0);
   const fileUploadRef = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<{filePath: string} | null>(null);
+  // const [file, setFile] = useState<{filePath: string} | null>(null);
   const [showBtn, setShowBtn] = useState(false);
   const abortController = new AbortController();
 
-  const onError = (error: any) => {
-    console.log(error);
-    toast('Your Image could not be uploaded. Please try again!!')
-  }
+  // const onError = (error: any) => {
+  //   console.log(error);
+  //   toast('Your Image could not be uploaded. Please try again!!')
+  // }
 
-  const onSuccess = (res: any) => {
-    setFile(res);
-    onFileChange(res.filePath)
-    toast('Image uploaded successfully')
-  }
+  // const onSuccess = (res: any) => {
+  //   setFile(res);
+  //   onFileChange(res.filePath)
+  //   toast('Image uploaded successfully')
+  // }
 
   const handleUpload = async () => {
     // ()=> !setShowBtn;
@@ -95,6 +95,8 @@ const ImageUpload = (
         abortSignal: abortController.signal,
       });
       console.log('Upload response:', uploadResponse);
+
+      // return file;
     } catch (error) {
       if (error instanceof ImageKitAbortError){
         console.error('Upload Aborted:', error.reason);
@@ -108,19 +110,21 @@ const ImageUpload = (
         console.error('Upload error:', error)
       }
     }
+
+    // return file;
   }
 
   return (
     <>
       <Input type='file' ref={fileUploadRef} />
-      {file && (
+      {/* {file && (
         <Image
           alt={file.filePath}
           src={file.filePath}
           width={500}
           height={500}
         />
-      )}
+      )} */}
       <div className={cn(
          'flex gap-2 items-center'
       )}>
