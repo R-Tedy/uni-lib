@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bebas_Neue, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import {SessionProvider} from "next-auth/react"
+import { auth } from "@/auth";
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -22,19 +24,24 @@ export const metadata: Metadata = {
   description: "Borrow and read books at your convenience",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en">
-      <body
-        className={`${bebasNeue.variable} ${ibmPlexSans.variable} antialiased`}
-      >
-        {children}
-        <Toaster/>
-      </body>
+      <SessionProvider session={session}>
+        <body
+          className={`${bebasNeue.variable} ${ibmPlexSans.variable} antialiased`}
+        >
+          {children}
+          <Toaster/>
+        </body>
+      </SessionProvider>
+      
     </html>
   );
 }

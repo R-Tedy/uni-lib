@@ -2,12 +2,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { DefaultValues, SubmitHandler, useForm, UseFormReturn, FieldValues, Path } from 'react-hook-form'
-import { object, ZodType } from 'zod'
+import {  ZodType } from 'zod'
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +15,9 @@ import {
 import { Input } from "@/components/ui/input"
 import Link from 'next/link'
 import { FIELD_NAMES, FIELD_TYPES } from '@/constants'
-import ImageUpload from './ImageUpload'
+// import ImageUpload from './ImageUpload'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 interface Props <T extends FieldValues> {
   schema: ZodType<T>;
@@ -27,13 +28,24 @@ interface Props <T extends FieldValues> {
 
 const AuthForm = <T extends FieldValues> ({type, schema, defaultValues, onSubmit} : Props<T>) => {
   const isSignIn = type === 'SIGN_IN';
+  const router = useRouter()
 
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handleSubmit: SubmitHandler<T> = async (data) => {}
+  const handleSubmit: SubmitHandler<T> = async (data) => {
+    const result = await onSubmit(data);
+
+    if (result.success) {
+      toast(isSignIn ? 'You have successfully signed in' : 'You have successfully signed up');
+      router.push('/')
+    } else {
+      toast(result.error ?? 'An error occured.')
+    }
+  
+  }
 
   return (
    <div className='flex flex-col gap-4'>
@@ -54,11 +66,7 @@ const AuthForm = <T extends FieldValues> ({type, schema, defaultValues, onSubmit
             <FormItem>
               <FormLabel className='capitalize'>{FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}</FormLabel>
               <FormControl>
-                {field.name === 'universityCard' ? 
-                <ImageUpload onFileChange = {field.onChange}/> :
                 <Input required type={FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]} {...field} /> 
-              }
-                
               </FormControl>
               <FormMessage />
             </FormItem>
