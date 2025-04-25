@@ -73,7 +73,7 @@ const AuthForm = <T extends FieldValues> ({type, schema, defaultValues, onSubmit
           )}
         />
         ))}
-        <Button type="submit" className='form-btn font-ibm-plex-sans'>{isSignIn ? 'Sign In' : 'Sign Up'}</Button>
+        <Button type="submit" className='form-btn font-ibm-plex-sans cursor-pointer'>{isSignIn ? 'Sign In' : 'Sign Up'}</Button>
       </form>
     </Form>
 
