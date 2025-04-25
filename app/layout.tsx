@@ -8,7 +8,8 @@ import { auth } from "@/auth";
 const bebasNeue = Bebas_Neue({
   weight: '400',
   variable: "--font-bebas-neue",
-  style: 'normal'
+  style: 'normal',
+  subsets: ['latin'],
 });
 
 const ibmPlexSans = IBM_Plex_Sans(
@@ -16,6 +17,7 @@ const ibmPlexSans = IBM_Plex_Sans(
     weight: ['400', '500', '600', '700'],
     style: 'normal',
     variable: "--font-ibm-plex-sans",
+    subsets: ['latin'],
   }
 );
 
