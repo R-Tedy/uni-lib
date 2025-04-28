@@ -17,7 +17,7 @@ const  Home = async () => {
       <BookList
         title = 'Latest Books'
         books = {sampleBooks}
-        containerClassName = 'mt-28'
+        containerClassName = 'mt-28 mx-auto'
       />
     </>
   );

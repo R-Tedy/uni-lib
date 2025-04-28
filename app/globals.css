@@ -115,11 +115,12 @@
   --color-dark-700: #464F6F;
   --color-dark-800: #1E2230;
   --color-gray-100: #CBD5E1;
+  --color-home: #111624;
   --breakpoint-xs: 480px;
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  --bg-pattern: url('/images/pattern.webp');
+  /* --bg-pattern: url('/images/pattern.webp'); */
 }
 
 @layer base {
@@ -159,7 +160,7 @@
 }
 /* Auth Utilities */
 @utility auth-container {
-  @apply relative flex flex-col-reverse text-light-100 sm:flex-row bg-pattern bg-cover bg-dark-100;
+  @apply relative flex flex-col-reverse text-light-100 sm:flex-row bg-home bg-cover bg-dark-100;
 }
 @utility auth-form {
   @apply my-auto flex h-full min-h-screen flex-1 items-center  px-5 py-10;
@@ -167,15 +168,15 @@
 @utility auth-box {
   @apply gradient-vertical mx-auto flex max-w-xl flex-col gap-6 rounded-lg p-10;
 }
-@utility bg-pattern {
+/* @utility bg-pattern {
   background-image: url('/images/pattern.webp');
-}
+} */
 @utility auth-illustration {
   @apply sticky h-40 w-full sm:top-0 sm:h-screen sm:flex-1 ;
 }
 /* Root Utilities */
 @utility root-container {
-  @apply flex min-h-screen flex-1 flex-col bg-pattern bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
+  @apply flex min-h-screen flex-1 flex-col bg-home bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
 }
 /* Book Details Utilities */
 @utility book-details {
@@ -243,29 +244,29 @@
   }
   /* Book List */
   .book-list {
-    @apply mt-10 flex flex-wrap gap-5 max-xs:justify-between xs:gap-10;
+    @apply mt-10 flex flex-wrap gap-1 mx-auto  max-xs:justify-between xs:gap-5;
   }
   /* Book Overview*/
   .book-overview {
     @apply flex flex-col-reverse items-center gap-12 sm:gap-32 xl:flex-row xl:gap-8
   }
   .book-overview h1 {
-    @apply text-5xl font-semibold text-white md:text-7xl;
+    @apply text-5xl font-semibold text-white md:text-6xl;
   }
   .book-info {
-    @apply mt-7 flex flex-row flex-wrap gap-4 text-xl text-light-100;
+    @apply mt-7 flex flex-row flex-wrap gap-4 text-lg text-light-100;
   }
   .book-copies {
     @apply flex flex-row flex-wrap gap-4 mt-1;
   }
   .book-copies p {
-    @apply text-xl text-light-100;
+    @apply text-lg text-light-100;
   }
   .book-copies p span {
     @apply ml-2 font-semibold text-primary;
   }
   .book-description {
-    @apply mt-2 text-justify text-xl text-light-100;
+    @apply mt-2 text-justify text-lg text-light-100;
   }
   .book-overview_btn {
     @apply mt-4 min-h-14 w-fit bg-primary text-dark-100 hover:bg-primary/90 max-md:w-full;
