@@ -21,3 +21,15 @@ interface AuthCredentials {
   universityId: number;
   // universityCard: string;
 }
+
+interface BookParams {
+  title: string;
+  author: string;
+  genre: string;
+  rating: string;
+  coverUrl: string;
+  description: string;
+  totalCopies: string;
+  videoUrl?:string;
+  summary: string; 
+}

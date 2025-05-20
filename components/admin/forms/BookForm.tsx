@@ -16,6 +16,9 @@ import { useRouter } from 'next/navigation'
 import { bookSchema } from '@/lib/validations'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
+import ColorPicker from '../ColourPicker'
+import { createBook } from '@/lib/admin/actions/book'
+import { toast } from 'sonner'
 
 interface Props extends Partial<Book> {
   type?: 'create' | 'update';
@@ -41,7 +44,15 @@ const BookForm = ({type, ... book} : Props) => {
   })
 
   const onSubmit = async (values: z.infer<typeof bookSchema>) => {
+    const result = await createBook(values);
 
+    if(result.success) {
+      toast('Book Created Successfully.')
+
+      router.push(`/admin/books/${result.data.id}`);
+    } else {
+      toast(`${result.message}`)
+    }
   }
 
   return (
@@ -143,7 +154,7 @@ const BookForm = ({type, ... book} : Props) => {
                 Cover Image
               </FormLabel>
               <FormControl>
-                {/* File upload */}
+                <Input placeholder='Cover Url' {...field} className='book-form_input'/> 
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -158,7 +169,10 @@ const BookForm = ({type, ... book} : Props) => {
                 Cover Color
               </FormLabel>
               <FormControl>
-                {/* Color picker */}
+                <ColorPicker
+                  onPickerChange={field.onChange}
+                  value={field.value}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -193,7 +207,7 @@ const BookForm = ({type, ... book} : Props) => {
                 Book Trailer
               </FormLabel>
               <FormControl>
-                {/* File upload */}
+                <Input placeholder='Video Url' {...field} className='book-form_input'/> 
               </FormControl>
               <FormMessage />
             </FormItem>
