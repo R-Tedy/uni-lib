@@ -14,11 +14,11 @@ const BookList = ({title, books, containerClassName}: Props) => {
         {title}
       </h2>
 
-      <ul className='book-list'>
+      {books.length > 2 && <ul className='book-list'>
         {books.map((book) => (
           <BookCard key={book.title} {...book}/>
         ))}
-      </ul>
+      </ul>}
     </section>
   )
 }
