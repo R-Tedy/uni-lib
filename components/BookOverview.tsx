@@ -3,8 +3,12 @@ import React from 'react'
 import { Button } from './ui/button'
 import BookCover from './BookCover'
 
+interface Props extends Book {
+  userId: string;
+}
+
 const BookOverview = (
-  {title, author, genre, rating, totalCopies, availableCopies, description, coverColor, coverUrl}: Book
+  {title, author, genre, rating, totalCopies, availableCopies, description, coverColor, coverUrl, userId}: Props
 ) => {
   return (
     <section className='book-overview'>
